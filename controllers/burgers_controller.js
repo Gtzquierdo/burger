@@ -16,14 +16,14 @@ router.get("/", function(req, res) {
     });
 });
 
-router.post("/", function(req, res) {
-    burger.create(["burger_name", "devoured"], [req.body.name, false], function(){
+router.post("/api/burgers", function(req, res) {
+    burger.create(["burger_name", "devoured"], [req.body.burger_name, req.body.devoured], function(result){
 
-        res.redirect("/");
+        res.json({ id: result.insertId });
     });
 });
 
-router.put("/:id", function(req, res) {
+router.put("/api/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
 
     console.log("condition", condition);
@@ -33,17 +33,25 @@ router.put("/:id", function(req, res) {
             devoured: req.body.devoured
         },
         condition,
-        function() {
-            res.redirect("/");
+        function(result) {if (result.changedRows === 0) {
+            return res.status(404).end();
+            } else {
+            res.status(200).end();
+            }
         });
-});
-
-router.delete("/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-
-    burger.delete(condition, function() {
-        res.redirect("/");
     });
-});
+
+    router.delete("/api/burgers/:id", function(req, res) {
+        var condition = "id = " + req.params.id;
+        console.log("condition", condition);
+    
+        burger.delete(condition, function(result) {
+          if (result.changedRows === 0) {
+            return res.status(404).end();
+          } else {
+            res.status(200).end();
+          }
+        });
+      });
 
 module.exports = router;
