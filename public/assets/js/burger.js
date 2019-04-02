@@ -8,7 +8,7 @@ $(function() {
           .trim(),
         devoured: 0
       };
-  
+
       $.ajax("/api/burgers", {
         type: "POST",
         data: newBurger
@@ -25,7 +25,7 @@ $(function() {
       var devouredState = {
         devoured: 1
       };
-  
+
       $.ajax("/api/burgers/" + id, {
         type: "PUT",
         data: devouredState

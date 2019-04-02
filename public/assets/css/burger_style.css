@@ -1,0 +1,11 @@
+body {
+    background-color: lightsalmon;
+}
+
+.jumbotron {
+    background-image: url("https://www.bing.com/th?id=OIP.ZAJbijzFPWoiDNcMs5omwQHaHa&w=176&h=176&c=7&o=5&pid=1.7");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 5%;
+    background-color: lightblue;
+}
