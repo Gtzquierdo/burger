@@ -1,6 +1,10 @@
+"use strict"
+
+require('dotenv').config()
+
 // Set up MySQL connection
 var mysql = require('mysql');
-require("dotenv").config();
+
 var connection;
 
 if(process.env.JAWSDB_URL) {
