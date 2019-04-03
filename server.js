@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 // Dependencies
 var express = require('express');
 var bodyParser = require("body-parser");
@@ -7,6 +5,7 @@ var bodyParser = require("body-parser");
 var exphbs = require('express-handlebars');
 
 var PORT = process.env.PORT || 8080;
+require("dotenv").config();
 
 var app = express();
 // Serve static content for the app from the "public" directory
@@ -23,7 +22,9 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/burgers_controller.js");
 
 app.use(routes);
-
+app.get('/', (req, res) => {
+    res.send(process.env.SECRET_KEY);
+})
 // Start our server so that it can begin listening to client requests
 app.listen(PORT, function() {
     // Log server-side when our server has started
