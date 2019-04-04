@@ -1,5 +1,3 @@
-"use strict"
-
 require('dotenv').config()
 
 // Set up MySQL connection
@@ -14,7 +12,7 @@ if(process.env.JAWSDB_URL) {
         port: 3306,
         host: 'localhost',
         user: process.env.DB_USER,
-        password: process.env.DB_PASS,
+        password: process.env.DB_PASSWORD,
         database: 'burgers_db'
     });
 };
